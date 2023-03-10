@@ -5,17 +5,17 @@ import CategoryMore from "./categoryMore.js";
 function categoriesNavbar(props){
     let list;
     if(props.categories.length<=7){
-        list=props.categories.map(category=> {
+        list=props.categories.map((category,index)=> {
             return(
-                <Category category={category} categoryClick={props.categoryClick}/>
+                <Category category={category} key={index} categoryClick={props.categoryClick}/>
             )
             
         });
     }
     else{
-            list=props.categories.slice(0,7).map(category=> {
+            list=props.categories.slice(0,7).map((category,index)=> {
                 return(
-                    <Category category={category} categoryClick={props.categoryClick}/>
+                    <Category category={category} key={index} categoryClick={props.categoryClick}/>
                 )  
             });
            

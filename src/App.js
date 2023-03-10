@@ -21,7 +21,7 @@ class App extends React.Component {
     this.setState({
       category: event.target.innerText,
       currSubCategory: "All"  
-    }) 
+    });
    // console.log(this.state.category)
 
   }
@@ -41,9 +41,7 @@ class App extends React.Component {
         <CategoriesNavbar categories={data.topTabCategoryList} categoryClick={this.categoryClick} />
         <ProductsContainer category={this.state.category} getSubCategory={this.getSubCategory} currSubCategory={this.state.currSubCategory} subCategoryOnClick={this.subCategoryOnClick}/> 
       </div>
-    );
-
-
+    )
   }
 }
 

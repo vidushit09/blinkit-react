@@ -15,7 +15,13 @@ class productsContainer extends React.Component{
         })
         
     }
-    
+    componentDidUpdate(prevProps) {
+        if(this.props!= prevProps) // Check if it's a new user, you can also use some unique property, like the ID  (this.props.user.id !== prevProps.user.id)
+        {
+          this.render();
+        }
+      } 
+      
     getItems=(subCategory,category)=>{
        // console.log(subCategory,category)
         if(subCategory=="All")
