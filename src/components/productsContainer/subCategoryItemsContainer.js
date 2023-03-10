@@ -11,7 +11,7 @@ class subCategoryItemsContainer extends React.Component{
     }
     sortBy=(event)=>{
         let selectedOption=event.target.value;
-        let currProducts= this.state.products;
+        let currProducts= this.props.products;
         if (selectedOption == "Price (Low to High)") {
             currProducts = currProducts.sort((a, b) => {
                 if (a.price < b.price) {
