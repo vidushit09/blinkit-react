@@ -4,7 +4,7 @@ import Product from "./product.js";
 function productsContainerItems(props){
     let list= props.products.map(product=>{
         return(
-            <Product product={product}/>
+            <Product product={product} cart={props.cart} addProduct={props.addProduct}/>
         )
     })
     return(

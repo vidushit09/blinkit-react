@@ -50,7 +50,7 @@ class subCategoryItemsContainer extends React.Component{
         return(
             <div className="products-container__items-container">
                 <ProductsContainerItemsHeader sortBy={this.sortBy}/>
-                <ProductsContainerItems products={this.props.products} />
+                <ProductsContainerItems products={this.props.products} cart={this.props.cart}  addProduct={this.props.addProduct}/>
             </div>
                 
         )
