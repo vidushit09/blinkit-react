@@ -22,7 +22,6 @@ class App extends React.Component {
       category: event.target.innerText,
       currSubCategory: "All"  
     });
-   // console.log(this.state.category)
 
   }
   getSubCategory=(category)=>{
@@ -34,12 +33,11 @@ class App extends React.Component {
       })
   }
   render() {
-    console.log(this.state.category, this.state.currSubCategory)
     return (
       <div>
         <TopNavbar cartCount={this.state.cartCount} cartValue={this.state.cartValue} displayCartDefault={this.state.displayCartDefault}/>
         <CategoriesNavbar categories={data.topTabCategoryList} categoryClick={this.categoryClick} />
-        <ProductsContainer category={this.state.category} getSubCategory={this.getSubCategory} currSubCategory={this.state.currSubCategory} subCategoryOnClick={this.subCategoryOnClick}/> 
+        <ProductsContainer category={this.state.category} currSubCategory={this.state.currSubCategory} getSubCategory={this.getSubCategory} subCategoryOnClick={this.subCategoryOnClick}/> 
       </div>
     )
   }

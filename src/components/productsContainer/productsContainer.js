@@ -6,24 +6,17 @@ import SubCategoryItemsContainer from "./subCategoryItemsContainer";
 
 class productsContainer extends React.Component{
     constructor(props){
-
         super(props);
-        console.log(props)
+        
         this.state=({
             currSubCategory: props.currSubCategory,
             category: props.category
         })
         
     }
-    componentDidUpdate(prevProps) {
-        if(this.props!= prevProps) // Check if it's a new user, you can also use some unique property, like the ID  (this.props.user.id !== prevProps.user.id)
-        {
-          this.render();
-        }
-      } 
+   
       
     getItems=(subCategory,category)=>{
-       // console.log(subCategory,category)
         if(subCategory=="All")
             return data.products.filter(obj=>obj.category==category);
         else
@@ -32,8 +25,8 @@ class productsContainer extends React.Component{
     render(){
         return(
             <div className="products-container">
-                <SubCategory currSubCategory={this.state.currSubCategory} subCategories={this.props.getSubCategory(this.state.category)} subCategoryOnClick={this.props.subCategoryOnClick}/>
-                <SubCategoryItemsContainer products={this.getItems(this.state.currSubCategory,this.state.category)} />
+                <SubCategory currSubCategory={this.props.currSubCategory} subCategories={this.props.getSubCategory(this.props.category)} subCategoryOnClick={this.props.subCategoryOnClick}/>
+                <SubCategoryItemsContainer products={this.getItems(this.props.currSubCategory,this.props.category)} />
             </div> 
         )
     }

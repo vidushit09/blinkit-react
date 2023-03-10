@@ -12,7 +12,7 @@ function product(props) {
             <div className="product-id" style={{display: "none"}}>{props.product.id}</div>
             <div className="products-container__item-image">
                 <div className="products-container__discount">{props.product.discount}% OFF </div>
-                <img src="http://127.0.0.1:5500/img/potato.png" className="product-container__item--img" />
+                <img src="http://127.0.0.1:3000/img/potato.png" className="product-container__item--img" />
                 <div className="products-container__sourced-at">Sourced at {props.product.sourcedAt}</div></div>
             <div className="products-container__item-name">{props.product.name}</div>
             <div className="products-container__item-weight">{props.product.quantity} kg</div>
