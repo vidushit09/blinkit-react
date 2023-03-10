@@ -5,10 +5,6 @@ import UpdateButton from "./updateButton.js";
 class product extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            showDefault:true,
-            count: 0
-        }
     }
     discountedPrice = (price, discount) => {
         price = Number(price);
@@ -17,32 +13,14 @@ class product extends React.Component {
         return price;
     }
     firstAdd=(event)=>{
-        this.setState({
-            showDefault: false,
-            count:1
-          });
        this.props.addProduct(event.target.parentNode)
     
     }
     plusone=(event)=>{
-        console.log(event.target)
-        this.setState({
-            count:this.state.count+1
-        })
         this.props.addProduct(event.target.parentNode.parentNode)
     }
     minusone=(event)=>{
-        if(this.state.count==1){
-            this.setState({
-                showDefault:true,
-                count:0
-            })
-        }
-        else{
-            this.setState({
-                count:this.state.count-1
-            })
-        }
+        this.props.deleteProduct(event.target.parentNode.parentNode)
     }
     
     render() {
@@ -61,7 +39,7 @@ class product extends React.Component {
                         <div className="products-container__discounted-price">₹{this.discountedPrice(this.props.product.price, this.props.product.discount)}</div>
                         <div className="products-container__actual-price">₹{this.props.product.price}</div>
                     </div>
-                    <UpdateButton cart={this.props.cart} product={this.props.product} count={this.state.count} firstAdd={this.firstAdd} showDefault={this.state.showDefault} plusone={this.plusone} minusone={this.minusone}/>
+                    <UpdateButton cart={this.props.cart} id={this.props.product.id} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone}/>
 
                 </div>
             </div>

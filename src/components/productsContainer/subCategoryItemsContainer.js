@@ -40,17 +40,15 @@ class subCategoryItemsContainer extends React.Component{
                 }
             });
         }  
-       // console.log(currProducts)
         this.setState({
             products: currProducts
         })
-        console.log(this.state.products)
     }
     render(){
         return(
             <div className="products-container__items-container">
                 <ProductsContainerItemsHeader sortBy={this.sortBy}/>
-                <ProductsContainerItems products={this.props.products} cart={this.props.cart}  addProduct={this.props.addProduct}/>
+                <ProductsContainerItems products={this.props.products} cart={this.props.cart}  addProduct={this.props.addProduct} deleteProduct={this.props.deleteProduct}/>
             </div>
                 
         )

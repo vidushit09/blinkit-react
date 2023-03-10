@@ -26,7 +26,7 @@ class productsContainer extends React.Component{
         return(
             <div className="products-container">
                 <SubCategory currSubCategory={this.props.currSubCategory} subCategories={this.props.getSubCategory(this.props.category)} subCategoryOnClick={this.props.subCategoryOnClick}/>
-                <SubCategoryItemsContainer products={this.getItems(this.props.currSubCategory,this.props.category)} cart={this.props.cart}  addProduct={this.props.addProduct} />
+                <SubCategoryItemsContainer products={this.getItems(this.props.currSubCategory,this.props.category)} cart={this.props.cart}  addProduct={this.props.addProduct} deleteProduct={this.props.deleteProduct} />
             </div> 
         )
     }

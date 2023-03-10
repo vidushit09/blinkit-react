@@ -4,7 +4,7 @@ import UpdatedCart from "./updatedCart";
 
 function myCart(props){
     let cart;
-    if(props.displayCartDefault){
+    if(props.cartCount==0){
         cart=<DefaultCart />
     }
     else{
