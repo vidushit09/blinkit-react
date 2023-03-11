@@ -16,7 +16,8 @@ class App extends React.Component {
       category: "Vegetables and Fruits",
       currSubCategory:"All",
       cartCount: 0,
-      cartValue: 0
+      cartValue: 0,
+      cart: new Map()
     };
   }
   categoryClick=(event)=>{
@@ -37,49 +38,64 @@ class App extends React.Component {
   addProduct=(parentNode)=>{
     let productId=parentNode.parentNode.getElementsByClassName("product-id")[0].innerText;
     let obj;
-    if(window.localStorage.getItem(productId)){
-      obj = JSON.parse(window.localStorage.getItem(productId));
+    if(this.state.cart.get(productId)){
+      obj = this.state.cart.get(productId);
       let count=Number(obj.quantity);
+      console.log(count)
       obj.quantity=count+1;
+      let tempCart=this.state.cart;
+      tempCart.set(productId,obj);
+      console.log(tempCart)
       let tempCartVal=(Number(this.state.cartValue)+obj.price).toFixed(2);
       this.setState({
         cartCount: this.state.cartCount+1,
-        cartValue: tempCartVal
+        cartValue: tempCartVal,
+        cart: tempCart
       })
     }
     else{
+      console.log("jhs");
       const price = Number(parentNode.getElementsByClassName("products-container__discounted-price")[0].innerText.slice(1));
       obj = {
           name: parentNode.parentNode.getElementsByClassName("products-container__item-name")[0].innerText,
           price: price,
           quantity: 1
       }
+      let tempCart=this.state.cart;
+
+      tempCart.set(productId,obj);
+      console.log(tempCart)
       let tempCartVal=(Number(this.state.cartValue)+Number(price)).toFixed(2);
       this.setState({
         cartCount: this.state.cartCount+1,
-        cartValue: tempCartVal
+        cartValue: tempCartVal,
+        cart: tempCart
       })
     }
-    
-    window.localStorage.setItem(productId, JSON.stringify(obj));
   }
 
   deleteProduct=(parentNode)=>{
     let productId=parentNode.parentNode.getElementsByClassName("product-id")[0].innerText;
-    let obj=JSON.parse(window.localStorage.getItem(productId));
+    let obj=this.state.cart.get(productId);
     let count=Number(obj.quantity);
+    console.log("hgvjk",count);
+    let tempCart;
     if(count==1){ 
-      window.localStorage.removeItem(productId);
+      tempCart=this.state.cart;
+      tempCart.delete(productId);
     }
     else{
+      tempCart=this.state.cart;
       obj.quantity=count-1;
-      window.localStorage.setItem(productId,JSON.stringify(obj));
+      tempCart.set(productId,obj)
     }
     let tempCartVal= (Number(this.state.cartValue)-Number(obj.price)).toFixed(2);
     this.setState({
       cartCount: this.state.cartCount-1,
-      cartValue: tempCartVal
+      cartValue: tempCartVal,
+      cart: tempCart
     })
+    console.log(this.state.cart);
   }
   render() {
     return (
