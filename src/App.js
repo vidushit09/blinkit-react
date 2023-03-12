@@ -41,7 +41,6 @@ class App extends React.Component {
     if(this.state.cart.get(productId)){
       obj = this.state.cart.get(productId);
       let count=Number(obj.quantity);
-      console.log(count)
       obj.quantity=count+1;
       let tempCart=this.state.cart;
       tempCart.set(productId,obj);

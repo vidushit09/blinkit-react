@@ -5,12 +5,21 @@ class updateButton extends React.Component {
         super(props);
         
     }
+    count(){
+        console.log(this.props.cart,this.props.id);
+        let id=''+this.props.id;
+        if(this.props.cart.get(id)){
+            console.log(this.props.cart.get(this.props.id), this.props.id);
+            return this.props.cart.get(this.props.id).quantity
+        }
+            
+    }
     render() { 
         return (
             <>
                 <button id="products-container__item-add--default" className="products-container__item--add-default" onClick={this.props.firstAdd} style={{ display: this.props.showDefault ? "block" : "none" }}>ADD</button>
                 <div id="products-container__item-add--updated" className="products-container__item--add-updated" style={{ display: this.props.showDefault ? "none" : "flex" }}>
-                    <i className="fa fa-minus" aria-hidden="true" id="minus-button" onClick={this.props.minusone}></i><div className="count">{this.props.itemCount}</div><i className="fa fa-plus" aria-hidden="true" id="plus-button" onClick={this.props.plusone}></i>
+                    <i className="fa fa-minus" aria-hidden="true" id="minus-button" onClick={this.props.minusone}></i><div className="count">{this.count()}</div><i className="fa fa-plus" aria-hidden="true" id="plus-button" onClick={this.props.plusone}></i>
                 </div>
             </>
 
