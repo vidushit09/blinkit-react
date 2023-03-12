@@ -7,7 +7,6 @@ import SubCategoryItemsContainer from "./subCategoryItemsContainer";
 class productsContainer extends React.Component{
     constructor(props){
         super(props);
-        
         this.state=({
             currSubCategory: props.currSubCategory,
             category: props.category
