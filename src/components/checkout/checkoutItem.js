@@ -1,22 +1,25 @@
 import React from "react";
-import data from "../../json/data.json";
 import UpdateButton from "../productsContainer/updateButton";
+
+import { addToCart } from "../../redux/cart/cartActions.js";
+import { removeFromCart } from "../../redux/cart/cartActions.js";
+import { addProduct } from "../../redux/product/productActions.js";
+import { connect } from "react-redux";
+
 function checkoutItem(props){
-    let item= data.products.filter(obj=>obj.id==props.index)[0];
-    let thumbnail="http://127.0.0.1:3000/"+ item.thumbnail;
-    let discount= Number(item.discount);
-    let price=Number(item.price);
+    let thumbnail="http://127.0.0.1:3000/"+ props.value.thumbnail;
+    let discount= Number(props.value.discount);
+    let price=Number(props.value.original);
     let updatedPrice=(price * (1 - 0.01 * discount)).toFixed(2);
-    let quantity= item.quantity;
-    let name=item.name;
+    let quantity= props.value.quantity;
+    let name=props.value.name;
 
     function firstAdd(event){
-        props.addProduct(event.target.parentNode)
-
-     
+        console.log(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+        props.addToCart(event.target.parentNode)
      }
     function plusone(event){
-         props.addProduct(event.target.parentNode.parentNode)
+         props.addToCart(event.target.parentNode.parentNode)
      }
     function minusone(event){
          props.deleteProduct(event.target.parentNode.parentNode)
@@ -57,4 +60,12 @@ function checkoutItem(props){
     )
 }
 
-export default checkoutItem;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (id)=> dispatch(addToCart(id)),
+        removeFromCart: (id)=> dispatch(removeFromCart(id))
+    };
+    };
+    
+export default connect(null, mapDispatchToProps)(checkoutItem);

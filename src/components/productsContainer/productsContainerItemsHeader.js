@@ -12,7 +12,7 @@ function productsContainerItemsHeader(props) {
                     name="dropdown"
                     id="sort-dropdown"
                     className="products-container__dropdown"
-                    onChange={props.sortBy}
+                     onChange={props.sortBy}
                 >
                     <option>Relevance</option>
                     <option>Price (Low to High)</option>

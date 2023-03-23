@@ -1,5 +1,6 @@
 import React from "react";
 import CheckoutProceed from "./checkoutProceed";
+import { connect } from "react-redux";
 
 function checkoutFooter(props){
     return(
@@ -45,10 +46,19 @@ function checkoutFooter(props){
             <div className="coupons-disclaimer">
                 Coupons are only applicable on Blinkit app
             </div>
-            <CheckoutProceed cartCount={props.cartCount} cartOriginal={props.cartOriginal} cartDiscount={props.cartDiscount}/>
+            <CheckoutProceed/>
             
         </div>
     )
 }
 
-export default checkoutFooter;
+
+const mapStateToProps = (state) => {
+    return {
+      cartDiscount: state.cart.cartDiscount,
+      cartOriginal: state.cart.cartOriginal
+    };
+  };
+  
+
+export default connect(mapStateToProps)(checkoutFooter);

@@ -3,7 +3,7 @@ import React from "react";
 function categoryMore(props){
     let list=props.categories.map((category,index)=> {
         return(
-            <li onClick={props.categoryClick} key={index}>{category}</li>
+            <li  onClick={()=>props.categoryClick(category)} key={index}>{category}</li>
         )
         
     });

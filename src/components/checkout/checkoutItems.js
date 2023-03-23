@@ -1,17 +1,16 @@
 import React from "react";
 import CheckoutItem from "./checkoutItem";
+import { connect } from "react-redux";
 
 function checkoutItems(props){
-    let itemsMap= new Map();
+    let itemsMap= props.cartItems;
+    console.log(itemsMap);
     let products=[];
     
-    Object.keys(window.localStorage).forEach(function(key){
-        itemsMap.set(key,window.localStorage.getItem(key));
-     });
      for(let [index,value] of itemsMap){
         products.push(
 
-            <CheckoutItem index={index} value={JSON.parse(value)} addProduct={props.addProduct} deleteProduct={props.deleteProduct} />
+            <CheckoutItem index={index} value={value}/>
         )
      }
 
@@ -22,4 +21,11 @@ function checkoutItems(props){
     )
 }
 
-export default checkoutItems;
+const mapStateToProps = (state) => {
+    return {
+      cartItems: state.cart.cartItems
+    };
+  };
+  
+
+export default connect(mapStateToProps)(checkoutItems);

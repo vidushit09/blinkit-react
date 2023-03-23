@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function checkoutSubHeader(props){
     return (
@@ -13,4 +14,12 @@ function checkoutSubHeader(props){
     )
 }
 
-export default checkoutSubHeader;
+const mapStateToProps = (state) => {
+    return {
+      cartCount: state.cart.cartCount
+    };
+  };
+  
+
+export default connect(mapStateToProps)(checkoutSubHeader);
+

@@ -1,10 +1,11 @@
 import React from "react";
 import Product from "./product.js";
+import { connect } from "react-redux";
 
 function productsContainerItems(props){
     let list= props.products.map((product,index)=>{
         return(
-            <Product key={index} product={product} cart={props.cart} addProduct={props.addProduct} deleteProduct={props.deleteProduct}/>
+            <Product key={index} product={product}/>
         )
     })
     return(
@@ -14,4 +15,11 @@ function productsContainerItems(props){
     )
 }
 
-export default productsContainerItems;
+const mapStateToProps = (state) => {
+    return {
+      products: state.product.products
+    };
+  };
+  
+
+export default connect(mapStateToProps)(productsContainerItems);

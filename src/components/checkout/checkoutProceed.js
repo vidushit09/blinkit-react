@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function checkoutProceed(props){
     return(
@@ -27,4 +28,13 @@ function checkoutProceed(props){
     )
 }
 
-export default checkoutProceed;
+const mapStateToProps = (state) => {
+    return {
+      cartCount: state.cart.cartCount,
+      cartDiscount: state.cart.cartDiscount,
+      cartOriginal: state.cart.cartOriginal
+    };
+  };
+  
+
+export default connect(mapStateToProps)(checkoutProceed);
