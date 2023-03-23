@@ -26,7 +26,6 @@ class productsContainerItems extends React.Component{
 
 
 const mapStateToProps = (state) => {
-    console.log(state.product.products);
     return {
       products: state.product.products
     };

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 function checkoutItems(props){
     let itemsMap= props.cartItems;
-    console.log(props.cartItems);
     let products=[];
     
      for(let [index,value] of itemsMap){
