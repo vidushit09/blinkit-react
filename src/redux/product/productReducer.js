@@ -38,6 +38,8 @@ const productReducer = (state = productState, action) => {
     case MINUS_ONE: {
       let tempData=productState.data;
       let id= action.payload.id;
+      console.log(id,tempData)
+      console.log(tempData.find(obj=>obj.id==id))
       tempData.find(obj=>obj.id==id)["count"]-=1;
 
 
@@ -50,6 +52,7 @@ const productReducer = (state = productState, action) => {
     }
 
     case CATEGORY_CLICK: {
+      console.log(state);
       return {
         ...state,
         category: action.category,

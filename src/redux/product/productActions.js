@@ -15,15 +15,11 @@ import {
     };
   };
   
-  export const deleteProduct = (productObj) => {
+  export const deleteProduct = (id) => {
     return {
       type: MINUS_ONE,
       payload: {
-        value: productObj.value,
-        product: productObj.product,
-        id: productObj.id,
-        categorie: productObj.categorie,
-        productCategorieId: productObj.productCategorieId,
+        id: id
       },
     };
   };

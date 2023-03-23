@@ -1,21 +1,32 @@
 import React from "react";
 import Product from "./product.js";
 import { connect } from "react-redux";
+import { tsImportEqualsDeclaration } from "@babel/types";
 
-function productsContainerItems(props){
-    let list= props.products.map((product,index)=>{
+class productsContainerItems extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            products: this.props.products
+        }
+    }
+    render(){
+        let list= this.props.products.map((product,index)=>{
+            return(
+                <Product key={index} product={product}/>
+            )
+        })
         return(
-            <Product key={index} product={product}/>
+            <div className="products-container__items" id="products-container__items">
+                {list}
+            </div>
         )
-    })
-    return(
-        <div className="products-container__items" id="products-container__items">
-            {list}
-        </div>
-    )
+    }
 }
 
+
 const mapStateToProps = (state) => {
+    console.log(state.product.products);
     return {
       products: state.product.products
     };

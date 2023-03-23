@@ -39,7 +39,7 @@ class subCategoryItemsContainer extends React.Component{
                 }
             });
         } 
-        this.props.updateProducts(currProducts)
+        this.props.updateProducts(currProducts);
 
     }
     render(){

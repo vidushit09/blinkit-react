@@ -12,7 +12,8 @@ class checkoutItem extends React.Component{
         super(props);
         this.state={
             displayDefault: false,
-            count: this.props.cartItems.get(String(this.props.index)).quantity
+            count: this.props.cartItems.get(String(this.props.index)).quantity,
+            cartItems: this.props.cartItems
         }
     }
     firstAdd=(event)=>{
@@ -39,11 +40,11 @@ class checkoutItem extends React.Component{
 
     render(){
         let thumbnail="http://127.0.0.1:3000/"+ this.props.value.thumbnail;
-    let discount= Number(this.props.value.discount);
-    let price=Number(this.props.value.original);
-    let updatedPrice=(price * (1 - 0.01 * discount)).toFixed(2);
-    let quantity= this.props.value.quantity;
-    let name=this.props.value.name;
+        let discount= Number(this.props.value.discount);
+        let price=Number(this.props.value.original);
+        let updatedPrice=(price * (1 - 0.01 * discount)).toFixed(2);
+        let quantity= this.props.value.quantity;
+        let name=this.props.value.name;
 
     
     
@@ -73,7 +74,7 @@ class checkoutItem extends React.Component{
 
             </div>
             <div className="checkout-item__right">
-                <UpdateButton id={this.props.index} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone} displayDefault={this.state.displayDefault}/>
+                <UpdateButton id={this.props.index} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone} displayDefault={this.state.displayDefault} count={this.state.count}/>
             </div>
             
             
