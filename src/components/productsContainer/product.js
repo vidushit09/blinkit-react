@@ -8,10 +8,19 @@ import { connect } from "react-redux";
 class product extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            displayDefault: true,
-            count: this.props.count
+        if(this.props.cartItems!=undefined){
+            this.state={
+                displayDefault: true,
+                count: this.props.cartItems.get(String(this.props.index))!=undefined ? this.props.cartItems.get(String(this.props.index)).quantity : 0
+            }
         }
+        else{
+            this.state={
+                displayDefault: true,
+                count: 0
+            }
+        }
+        
     }
     discountedPrice = (price, discount) => {
         price = Number(price);
@@ -21,22 +30,33 @@ class product extends React.Component {
     }
     firstAdd=(event)=>{
         this.setState({
-            displayDefault: false
+            displayDefault: false,
+            count:this.state.count+1
         })
-        console.log(this.state.displayDefault);
+        console.log("dfgr",this.state.displayDefault);
        this.props.addToCart(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
        this.props.addProduct(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
     }
     plusone=(event)=>{
         this.setState({
-            displayDefault: false
+            count:this.state.count+1
         })
-        console.log(this.state.displayDefault);
         this.props.addToCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
-        this.props.addToCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
+        this.props.addProduct(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
     }
 
     minusone=(event)=>{
+        if(this.state.count==1){
+            this.setState({
+                count:this.state.count-1,
+                displayDefault:true
+            })
+        }
+        else{
+            this.setState({
+                count:this.state.count-1
+            })
+        }
         this.props.removeFromCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
     }
     
@@ -62,7 +82,7 @@ class product extends React.Component {
                         <div className="products-container__discounted-price">₹{this.discountedPrice(this.props.product.price, this.props.product.discount)}</div>
                         <div className="products-container__actual-price">₹{this.props.product.price}</div>
                     </div>
-                    <UpdateButton displayDefault={displayDefault} id={this.props.product.id} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone}/>
+                    <UpdateButton count={this.state.count} displayDefault={this.state.displayDefault} id={this.props.product.id} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone}/>
 
                 </div>
             </div>
@@ -73,7 +93,8 @@ class product extends React.Component {
 const mapStateToProps = (state) => {
     return {
       products: state.product.products,
-      count: state.product.count
+      count: state.product.count,
+      cart: state.cart.cartItems
     };
   };
   
