@@ -7,7 +7,6 @@ import data from "../../json/data.json"
 
 
 function categoriesNavbar(props){
-    console.log(props);
     let list,i=7;
     if(props.categories.length<=7){
         list=props.categories.map((category,index)=> {

@@ -11,7 +11,6 @@ class updateButton extends React.Component {
     }
     render() {
         let val=0,showDefault=true;
-        console.log(this.props.displayDefault);
         if(this.props.cartItems.get(String(this.props.id))!=undefined){
             showDefault=false;
             val=this.props.cartItems.get(String(this.props.id)).quantity;

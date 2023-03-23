@@ -38,7 +38,6 @@ const cartReducer = (state = cartState, action) => {
         obj["quantity"] = Number(obj["quantity"]) + 1;
         newData.set(id, obj);
       }
-      console.log(state);
       
       return {
         ...state,
@@ -65,7 +64,6 @@ const cartReducer = (state = cartState, action) => {
         newData.get(action.payload.id)["quantity"]=quantity;
         
       }
-      console.log(state);
       return{
         ...state,
         cartCount:state.cartCount-1,

@@ -4,32 +4,53 @@ import UpdateButton from "../productsContainer/updateButton";
 import { addToCart } from "../../redux/cart/cartActions.js";
 import { removeFromCart } from "../../redux/cart/cartActions.js";
 import { addProduct } from "../../redux/product/productActions.js";
+import { deleteProduct } from "../../redux/product/productActions.js";
 import { connect } from "react-redux";
 
-function checkoutItem(props){
-    let thumbnail="http://127.0.0.1:3000/"+ props.value.thumbnail;
-    let discount= Number(props.value.discount);
-    let price=Number(props.value.original);
+class checkoutItem extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            displayDefault: false,
+            count: this.props.cartItems.get(String(this.props.index)).quantity
+        }
+    }
+    firstAdd=(event)=>{
+        this.setState({
+            count: this.state.count+1
+        })
+        this.props.addToCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+        this.props.addProduct(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+     }
+    plusone=(event)=>{
+        this.setState({
+            count: this.state.count+1
+        })
+        this.props.addToCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+        this.props.addProduct(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+     }
+    minusone=(event)=>{
+        this.setState({
+            count: this.state.count-1
+        })
+         this.props.removeFromCart(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+         this.props.deleteProduct(event.target.parentNode.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
+     }
+
+    render(){
+        let thumbnail="http://127.0.0.1:3000/"+ this.props.value.thumbnail;
+    let discount= Number(this.props.value.discount);
+    let price=Number(this.props.value.original);
     let updatedPrice=(price * (1 - 0.01 * discount)).toFixed(2);
-    let quantity= props.value.quantity;
-    let name=props.value.name;
+    let quantity= this.props.value.quantity;
+    let name=this.props.value.name;
 
-    function firstAdd(event){
-        console.log(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText);
-        props.addToCart(event.target.parentNode)
-     }
-    function plusone(event){
-         props.addToCart(event.target.parentNode.parentNode)
-     }
-    function minusone(event){
-         props.deleteProduct(event.target.parentNode.parentNode)
-     }
-
+    
     
     return(
         <li className="checkout-item">
             <div className="checkout-item__left">
-                <div className="product-id" style={{ display: "none" }}>{props.index}</div>
+                <div className="product-id" style={{ display: "none" }}>{this.props.index}</div>
                 <div className="checkout-item--img">
                     <img src={thumbnail} />
                 </div>
@@ -52,20 +73,30 @@ function checkoutItem(props){
 
             </div>
             <div className="checkout-item__right">
-                <UpdateButton id={props.index} firstAdd={firstAdd} plusone={plusone} minusone={minusone}/>
+                <UpdateButton id={this.props.index} firstAdd={this.firstAdd} plusone={this.plusone} minusone={this.minusone} displayDefault={this.state.displayDefault}/>
             </div>
             
             
         </li>
     )
-}
 
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+      products: state.product.products,
+      count: state.product.count,
+      cartItems: state.cart.cartItems
+    };
+  };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (id)=> dispatch(addToCart(id)),
-        removeFromCart: (id)=> dispatch(removeFromCart(id))
+        removeFromCart: (id)=> dispatch(removeFromCart(id)),
+        addProduct: (id)=>dispatch(addProduct(id)),
+        deleteProduct: (id)=> dispatch(deleteProduct(id))
     };
-    };
+};
     
-export default connect(null, mapDispatchToProps)(checkoutItem);
+export default connect(mapStateToProps, mapDispatchToProps)(checkoutItem);

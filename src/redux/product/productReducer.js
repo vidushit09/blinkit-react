@@ -36,21 +36,16 @@ const productReducer = (state = productState, action) => {
     }
 
     case MINUS_ONE: {
-      let newData = state.data;
-      let categorie = action.payload.categorie;
-      let id = action.payload.id;
-      let productCategorieId = action.payload.productCategorieId;
+      let tempData=productState.data;
+      let id= action.payload.id;
+      tempData.find(obj=>obj.id==id)["count"]-=1;
 
-      let count =
-        parseInt(
-          newData[categorie][productCategorieId]["products"][id]["count"]
-        ) - 1;
-      newData[categorie][productCategorieId]["products"][id]["count"] = count;
+
 
       return {
         ...state,
         count: parseInt(state.count) - 1,
-        data: newData,
+        data: tempData
       };
     }
 

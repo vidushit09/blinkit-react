@@ -33,7 +33,6 @@ class product extends React.Component {
             displayDefault: false,
             count:this.state.count+1
         })
-        console.log("dfgr",this.state.displayDefault);
        this.props.addToCart(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
        this.props.addProduct(event.target.parentNode.parentNode.getElementsByClassName("product-id")[0].innerText)
     }
