@@ -1,6 +1,7 @@
 import React from "react";
 import SubCategory from "./subCategory";
 import SubCategoryItemsContainer from "./subCategoryItemsContainer";
+import { connect } from "react-redux";
 
 
 class productsContainer extends React.Component{
@@ -9,9 +10,14 @@ class productsContainer extends React.Component{
         return(
             <div className="products-container">
                 <SubCategory />
-                <SubCategoryItemsContainer /> 
+                <SubCategoryItemsContainer products={this.props.products}/> 
             </div> 
         )
     }
 }
-export default productsContainer;
+const mapStateToProps = (state) => {
+    return {
+      products: state.product.products
+    };
+  };
+  export default connect(mapStateToProps)(productsContainer)

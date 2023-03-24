@@ -5,8 +5,7 @@ import {
   CATEGORY_CLICK,
   SUB_CATEGORY_CLICK,
   PLUS_ONE,
-  MINUS_ONE,
-  UPDATE_PRODUCTS
+  MINUS_ONE
 } from "./productTypes";
 
 const productState = {
@@ -75,14 +74,6 @@ const productReducer = (state = productState, action) => {
             };
         }    
     }
-
-    case UPDATE_PRODUCTS:{
-      return{
-        ...state,
-        products: action.payload.currProducts
-      }
-    }
-
     default:
       return state;
   }

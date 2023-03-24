@@ -2,8 +2,7 @@ import {
     CATEGORY_CLICK,
     SUB_CATEGORY_CLICK,
     PLUS_ONE,
-    MINUS_ONE,
-    UPDATE_PRODUCTS
+    MINUS_ONE
   } from "./productTypes";
   
   export const addProduct = (id) => {
@@ -37,11 +36,4 @@ import {
       subCategory: subCategory,
     };
   };
-  export const updateProducts=(currProducts)=>{
-    return{
-      type: UPDATE_PRODUCTS,
-      payload:{
-        currProducts: currProducts
-      }
-    }
-  }
+ 

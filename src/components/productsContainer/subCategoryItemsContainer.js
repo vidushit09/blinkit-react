@@ -1,13 +1,9 @@
 import React from "react";
 import ProductsContainerItemsHeader from "./productsContainerItemsHeader";
 import ProductsContainerItems from "./productsContainerItems";
-import { updateProducts } from "../../redux/product/productActions";
-import { connect } from "react-redux";
+
 
 class subCategoryItemsContainer extends React.Component{
-    constructor(props){
-        super(props);
-    }
     sortBy=(event)=>{
         let selectedOption=event.target.value;
         let currProducts= this.props.products;
@@ -39,31 +35,22 @@ class subCategoryItemsContainer extends React.Component{
                 }
             });
         } 
-        this.props.updateProducts(currProducts);
+        this.setState({
+            products: currProducts,
+          });
 
     }
     render(){
         return(
             <div className="products-container__items-container">
                 <ProductsContainerItemsHeader sortBy={this.sortBy}/>
-                <ProductsContainerItems/> 
+                <ProductsContainerItems products={this.props.products}/> 
             </div>
                 
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-      products: state.product.products
-    };
-  };
-  
-const mapDispatchToProps = (dispatch) => {
-return {
-    updateProducts: (currProducts)=> dispatch(updateProducts(currProducts)),
-    
-};
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(subCategoryItemsContainer);
+
+export default subCategoryItemsContainer;

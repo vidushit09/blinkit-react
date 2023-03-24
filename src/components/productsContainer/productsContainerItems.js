@@ -1,15 +1,9 @@
 import React from "react";
 import Product from "./product.js";
 import { connect } from "react-redux";
-import { tsImportEqualsDeclaration } from "@babel/types";
 
 class productsContainerItems extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            products: this.props.products
-        }
-    }
+
     render(){
         let list= this.props.products.map((product,index)=>{
             return(
@@ -25,11 +19,6 @@ class productsContainerItems extends React.Component{
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-      products: state.product.products
-    };
-  };
-  
 
-export default connect(mapStateToProps)(productsContainerItems);
+
+export default productsContainerItems;

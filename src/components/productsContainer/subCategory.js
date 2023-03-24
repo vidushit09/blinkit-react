@@ -4,9 +4,6 @@ import { subCategoryClick } from "../../redux/product/productActions";
 import { connect } from "react-redux";
 
 class subCategory extends React.Component{
-    constructor(props){
-        super(props);
-    }
     
     render(){
         let list= this.props.subCategories.map((subCategory,index)=>{
