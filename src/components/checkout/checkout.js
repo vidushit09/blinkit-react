@@ -9,7 +9,7 @@ function checkout(props){
         <div className="checkout">
             <CheckoutHeader />
             <CheckoutSubHeader/>
-            <CheckoutItems  addProduct={props.addProduct} deleteProduct={props.deleteProduct}/>
+            <CheckoutItems/>
             <CheckoutFooter  cartOriginal={props.cartOriginal} cartDiscount={props.cartDiscount}  cartCount={props.cartCount}/>
         </div>
     )

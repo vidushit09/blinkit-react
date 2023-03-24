@@ -3,8 +3,6 @@ import UpdateButton from "../productsContainer/updateButton";
 
 import { addToCart } from "../../redux/cart/cartActions.js";
 import { removeFromCart } from "../../redux/cart/cartActions.js";
-import { addProduct } from "../../redux/product/productActions.js";
-import { deleteProduct } from "../../redux/product/productActions.js";
 import { connect } from "react-redux";
 
 class checkoutItem extends React.Component {
@@ -25,11 +23,6 @@ class checkoutItem extends React.Component {
         "product-id"
       )[0].innerText
     );
-    this.props.addProduct(
-      event.target.parentNode.parentNode.parentNode.getElementsByClassName(
-        "product-id"
-      )[0].innerText
-    );
   };
   plusone = (event) => {
     this.setState({
@@ -40,22 +33,12 @@ class checkoutItem extends React.Component {
         "product-id"
       )[0].innerText
     );
-    this.props.addProduct(
-      event.target.parentNode.parentNode.parentNode.getElementsByClassName(
-        "product-id"
-      )[0].innerText
-    );
   };
   minusone = (event) => {
     this.setState({
       count: this.state.count - 1,
     });
     this.props.removeFromCart(
-      event.target.parentNode.parentNode.parentNode.getElementsByClassName(
-        "product-id"
-      )[0].innerText
-    );
-    this.props.deleteProduct(
       event.target.parentNode.parentNode.parentNode.getElementsByClassName(
         "product-id"
       )[0].innerText
@@ -121,9 +104,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(addToCart(id)),
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-    addProduct: (id) => dispatch(addProduct(id)),
-    deleteProduct: (id) => dispatch(deleteProduct(id)),
+    removeFromCart: (id) => dispatch(removeFromCart(id))
   };
 };
 
