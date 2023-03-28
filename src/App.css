@@ -115,14 +115,15 @@ a{
   border-bottom: 0.15rem solid #d6d6d6;
   list-style: none;
   letter-spacing: 0.07rem;
-  color: #6a6868;
 }
 
 .category-list__list-item{
   height: 100%;
   padding: 0rem 1.5rem;
+  color: #6a6868;
 }
 .category-list__list-item:hover{
+  height: 6rem;
   cursor: pointer;
   background-color: #8080801c;
 }
@@ -148,6 +149,7 @@ a{
   padding: 1.5rem;
   padding-right: 2rem  ;
   display: none;
+  color: #6a6868;
 }
 
 #more:hover #dropdown, #more:hover li{

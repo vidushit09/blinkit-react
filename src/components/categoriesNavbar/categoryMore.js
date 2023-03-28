@@ -1,9 +1,12 @@
 import React from "react";
+import { Link} from "react-router-dom";
 
 function categoryMore(props){
     let list=props.categories.map((category,index)=> {
         return(
+            <Link to="/">
             <li  onClick={()=>props.categoryClick(category)} key={index}>{category}</li>
+            </Link>
         )
         
     });
